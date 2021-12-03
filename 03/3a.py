@@ -31,7 +31,7 @@ for i in range(0, length):
 		epsilon += "0"
 
 gammaInt = int(gamma, 2)
-epsilonInt = int(epsilon,2)
+epsilonInt = int(epsilon, 2)
 powerConsumption = gammaInt * epsilonInt
 
 print("Gamma: " + str(gammaInt))
