@@ -9,6 +9,8 @@ awk '$1 == "down" {sum+=$2} END {print sum;}' input
 
 
 
-
-
 awk 'BEGIN {pos=0; aim=0; depth=0} {if($1 == "forward") {pos+=$2; depth+=(aim*$2)} else if($1 == "up") {aim-=$2} else if($1 == "down") {aim+=$2} print $1 " " $2 ": pos=" pos " depth=" depth " aim=" aim}' input
+.
+.
+.
+forward 1: pos=1970 depth=1000556 aim=916
