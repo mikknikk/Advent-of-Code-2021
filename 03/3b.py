@@ -14,6 +14,22 @@ def mitaOnEniten(lista, indeksi, tasatilanne):
 	else:
 		return tasatilanne
 
+# Selvittää ratingin käyttämällä joko yllä olevaa funktiota tai käänteistä tulosta
+def selvitaRating(length, lista, eniten):
+	for j in range(length):
+		poistetaan = []
+		naitaOnEniten = mitaOnEniten(lista, j, '1')
+		for binaaristringi in lista:
+			if (eniten and binaaristringi[j] != naitaOnEniten) or (not eniten and binaaristringi[j] == naitaOnEniten):
+				poistetaan.append(binaaristringi)
+		for p in poistetaan:
+			if len(lista) == 1:
+				break
+			else:
+				lista.remove(p)
+		if len(lista) == 1:
+			return lista[0]
+
 # Luetaan tiedosto
 input = open("input", "r")
 lines = input.readlines()
@@ -43,35 +59,9 @@ for line in lines:
 		elif char == '1':
 			ykkoset[i] += 1
 
-# Selvitetään oxygen generator rating
-for j in range(length):
-	poistetaan = []
-	naitaOnEniten = mitaOnEniten(oxygenGeneratorEhdokkaat, j, '1')
-	for binaaristringi in oxygenGeneratorEhdokkaat:
-		if binaaristringi[j] != naitaOnEniten:
-			poistetaan.append(binaaristringi)
-	for p in poistetaan:
-		if len(oxygenGeneratorEhdokkaat) == 1:
-			break
-		else:
-			oxygenGeneratorEhdokkaat.remove(p)
-	if len(oxygenGeneratorEhdokkaat) == 1:
-		oxygenGeneratorRating = oxygenGeneratorEhdokkaat[0]
-
-# Selvitetään CO2 scrubber rating
-for j in range(length):
-	poistetaan = []
-	naitaOnEniten = mitaOnEniten(CO2ScrubberEhdokkaat, j, '1')
-	for binaaristringi in CO2ScrubberEhdokkaat:
-		if binaaristringi[j] == naitaOnEniten:
-			poistetaan.append(binaaristringi)
-	for p in poistetaan:
-		if len(CO2ScrubberEhdokkaat) == 1:
-			break
-		else:
-			CO2ScrubberEhdokkaat.remove(p)
-	if len(CO2ScrubberEhdokkaat) == 1:
-		CO2ScrubberRating = CO2ScrubberEhdokkaat[0]
+# Selvitetään ratingit
+oxygenGeneratorRating = selvitaRating(length, oxygenGeneratorEhdokkaat, True)
+CO2ScrubberRating = selvitaRating(length, CO2ScrubberEhdokkaat, False)
 
 # Muutetaan 10-järjestelmän integereiksi
 oxygenGeneratorRatingInt = int(oxygenGeneratorRating, 2)
