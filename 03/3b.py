@@ -28,15 +28,13 @@ count = len(lines)
 nollat = [0] * length
 ykkoset = [0] * length
 
-# Tallennetaan binääristringit tähän
-binaaristringit = []
+# Tallennetaan binääristringit näihin
 oxygenGeneratorEhdokkaat = []
 CO2ScrubberEhdokkaat = []
 
 # Käydään inputti läpi rivi kerrallaan ja päivitetään määriä
 for line in lines:
 	line = line.rstrip('\n')
-	binaaristringit.append(line)
 	oxygenGeneratorEhdokkaat.append(line)
 	CO2ScrubberEhdokkaat.append(line)
 	for i, char in enumerate(line):
