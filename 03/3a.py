@@ -1,5 +1,5 @@
 # Luetaan tiedosto
-input = open("input", "r")
+input = open("example_input", "r")
 lines = input.readlines()
 
 # Lasketaan rivin pituus (oletetaan kaikki samanpituisiksi)
@@ -10,18 +10,16 @@ nollat = [0] * length
 ykkoset = [0] * length
 
 # Käydään inputti läpi rivi kerrallaan ja päivitetään määriä
-for line in lines:
+for l, line in enumerate(lines):
 	line = line.rstrip('\n')
-	i = 0
-	for char in line:
+	for i, char in enumerate(line):
 		if char == '0':
 			nollat[i] += 1
 		elif char == '1':
 			ykkoset[i] += 1
-		i += 1
 
-print(nollat)
-print(ykkoset)
+#print(nollat)
+#print(ykkoset)
 
 # Muodostetaan gamma ja epsilon binääristringeinä
 gamma = ""
@@ -38,9 +36,11 @@ for i in range(0, length):
 # Muutetaan 10-järjestelmän integereiksi
 gammaInt = int(gamma, 2)
 epsilonInt = int(epsilon, 2)
+
+# Lasketaan power consumption
 powerConsumption = gammaInt * epsilonInt
 
 # Tulostetaan tulokset
-print("Gamma: " + str(gammaInt))
-print("Epsilon: " + str(epsilonInt))
-print("Power consumption: " + str(powerConsumption))
+print("Gamma:", gammaInt)
+print("Epsilon:", epsilonInt)
+print("Power consumption:", powerConsumption)
